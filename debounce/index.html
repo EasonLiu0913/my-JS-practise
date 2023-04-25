@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <input type="text" />
+        <ul id="result"></ul>
+
+        <script>
+            const input = document.querySelector('input');
+            const resultUl = document.querySelector('#result');
+
+            let timer = null;
+
+            const debounce = (cb, time = 5000) => {
+                window.clearTimeout(timer);
+                timer = window.setTimeout(cb, time);
+            };
+
+            const changeContent = () => {
+                const newList = document.createElement('li');
+                newList.innerText = input.value;
+                input.value = '';
+                resultUl.appendChild(newList);
+            };
+
+            input.addEventListener('input', (event) => {
+                debounce(changeContent, 2000);
+            });
+        </script>
+    </body>
+</html>
