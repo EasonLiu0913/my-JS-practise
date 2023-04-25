@@ -13,5 +13,22 @@ function flatten(arr) {
     return result;
 }
 
-const output = flatten(inputArray);
-console.log('output', output);
+function flatten2(arr) {
+    const newArr = arr.reduce((acc, item) => {
+        if (Array.isArray(item)) {
+            acc = acc.concat(flatten2(item));
+        } else {
+            acc.push(item);
+        }
+
+        return acc;
+    }, []);
+
+    return newArr;
+}
+
+const output1 = flatten1(inputArray);
+console.log('output1', output1);
+
+const output2 = flatten2(inputArray);
+console.log('output2', output2);
